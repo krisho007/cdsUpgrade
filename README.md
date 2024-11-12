@@ -1,25 +1,8 @@
 # Getting Started
 
-Welcome to your new project.
-
-It contains these folders and files, following our recommended project layout:
-
-File or Folder | Purpose
----------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
-`srv/` | your service models and code go here
-`package.json` | project metadata and configuration
-`readme.md` | this getting started guide
-
-
-## Next Steps
-
-- Open a new terminal and run `cds watch`
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start adding content, for example, a [db/schema.cds](db/schema.cds).
-
-
-## Learn More
-
-Learn more at https://cap.cloud.sap/docs/get-started/.
+- Clone, move to the folder
+- run `npm i -g @sap/cds-dk@v7`. 
+- run `npm i` to install the dependencies
+- run `cds bind auth -2 transactionPoC-auth` to bind the auth service
+- run `cds bind db -2 transactionPoC-db` to bind the db service
+- run `cds watch --profile hybrid` to start the service

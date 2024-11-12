@@ -6,14 +6,13 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^6",
-    "@sap/xssec": "^3",
+    "@sap/cds": "^7",
+    "@sap/xssec": "^4",
     "express": "^4",
-    "hdb": "^0.19.5",
-    "passport": "^0.7.0"
+    "hdb": "^0.19.5"
   },
   "devDependencies": {
-    "@sap/cds-dk": "^6"
+    "@sap/cds-dk": "^7"
   },
   "scripts": {
     "start": "cds-serve"

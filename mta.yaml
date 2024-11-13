@@ -8,8 +8,8 @@ build-parameters:
   before-all:
     - builder: custom
       commands:
-        - npm ci
-        - npx cds build --production
+        - npm install --production
+        - npx -p @sap/cds-dk cds build --production
 modules:
   - name: transactionPoC-srv
     type: nodejs
@@ -35,6 +35,7 @@ modules:
       buildpack: nodejs_buildpack
     requires:
       - name: transactionPoC-db
+      - name: transactionPoC-auth
 
 resources:
   - name: transactionPoC-auth

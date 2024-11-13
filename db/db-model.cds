@@ -4,7 +4,7 @@ using { cuid } from '@sap/cds/common';
 entity MainEntity: cuid {
     name: String;
     description: String;
-    children: Association to many ChildEntity;
+    children: Composition of ChildEntity;
 }
 
 entity ChildEntity: cuid {

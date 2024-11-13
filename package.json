@@ -5,6 +5,7 @@
   "repository": "<Add your repository here>",
   "license": "UNLICENSED",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@sap/cds": "^6",
     "@sap/xssec": "^3",
@@ -20,7 +21,10 @@
   },
   "cds": {
     "requires": {
-      "auth": "xsuaa"
+      "auth": "xsuaa",
+      "db": {
+        "kind": "hana"
+      }
     },
     "sql": {
       "native_hana_associations": false

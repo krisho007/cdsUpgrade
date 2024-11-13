@@ -6,28 +6,28 @@ export default async function() {
     
     this.on('processDataWrong', async (req) => {
         //Insert entry to the MainEntity
-        await insertMainEntity(req);
+        const parent = await insertMainEntity(req);
 
-        //Insert entry to the ChildEntity without await
-        insertChildEntity(req);
+        //Insert entry to the ChildEntity
+        await insertChildEntity(parent, req);
 
-        //Get all entries from the MainEntity without await
-        const mainEntities = getAllMainEntities(req);
+        //Insert another entry to the ChildEntity
+        insertAnotherChildEntity(parent, req);
 
-        return `Number of main entities: ${mainEntities.length}`;
+        return `Out of processDataWrong`;
     });
 
     this.on('processDataRight', async (req) => {
         //Insert entry to the MainEntity
-        await insertMainEntity(req);
+        const parent = await insertMainEntity(req);
 
-        //Insert entry to the ChildEntity
-        await insertChildEntity(req);
+        //Insert entry to the ChildEntity without await
+        await insertChildEntity(parent, req);
 
-        //Get all entries from the MainEntity
-        const mainEntities = await getAllMainEntities(req);
+        //Insert another entry to the ChildEntity
+        await insertAnotherChildEntity(parent, req);
 
-        return `Number of main entities: ${mainEntities.length}`;
+        return `Out of processDataRight`;
     });
 }
 
@@ -41,8 +41,22 @@ async function insertMainEntity(req) {
 }
 
 //A function to insert entry to the ChildEntity
-async function insertChildEntity(req) {
-    const response = await INSERT.into(ChildEntity).entries(req.data);
+async function insertChildEntity(req, parent) {
+    const response = await INSERT.into(ChildEntity).entries({
+        name: "Child Entity 1",
+        description: "First child entity",
+        parent: parent
+    });
+    return response;
+}
+
+//A function to insert another entry to the ChildEntity
+async function insertAnotherChildEntity(req, parent) {
+    const response = await INSERT.into(ChildEntity).entries({
+        name: "Child Entity 2",
+        description: "Second child entity",
+        parent: parent
+    });
     return response;
 }
 

@@ -19,10 +19,10 @@ export default async function() {
         const parent = await insertMainEntity(req);
 
         //Insert entry to the ChildEntity without await
-        await insertChildEntity(parent, req);
+        await insertChildEntity(req);
 
         //Insert another entry to the ChildEntity
-        await insertAnotherChildEntity(parent, req);
+        await insertAnotherChildEntity(req);
 
         return `Out of processDataRight`;
     });
@@ -40,25 +40,23 @@ async function insertMainEntity(req) {
 }
 
 //A function to insert entry to the ChildEntity
-async function insertChildEntity(req, parent) {
+async function insertChildEntity(req) {
     const db = await cds.connect.to("db");
     const { MainEntity, ChildEntity } = db.entities;    
     const response = await INSERT.into(ChildEntity).entries({
         name: "Child Entity 1",
-        description: "First child entity",
-        parent: parent
+        description: "First child entity"
     });
     return response;
 }
 
 //A function to insert another entry to the ChildEntity
-async function insertAnotherChildEntity(req, parent) {
+async function insertAnotherChildEntity(req) {
     const db = await cds.connect.to("db");
     const { ChildEntity } = db.entities;    
     const response = await INSERT.into(ChildEntity).entries({
         name: "Child Entity 2",
-        description: "Second child entity",
-        parent: parent
+        description: "Second child entity"
     });
     return response;
 }

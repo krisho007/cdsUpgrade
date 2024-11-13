@@ -23,7 +23,8 @@
     "requires": {
       "auth": "xsuaa",
       "db": {
-        "kind": "hana"
+        "kind": "hana",
+        "deploy-format": "hdbtable"
       }
     },
     "sql": {
